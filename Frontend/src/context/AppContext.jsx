@@ -16,7 +16,7 @@ const ContextProvider = (props) => {
   // Fetch all CRUD entries
   const fetchCruds = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/get");
+      const response = await axios.get("https://dlk-crud-backend.onrender.com/api/get");
       setCruds(response.data.data);
     } catch (error) {
       showAlert("Error fetching CRUD entries", "danger");
@@ -26,7 +26,7 @@ const ContextProvider = (props) => {
   // Add a new CRUD entry
   const addCrud = async (crud) => {
     try {
-      const response = await axios.post("http://localhost:5000/api/post", crud);
+      const response = await axios.post("https://dlk-crud-backend.onrender.com/api/post", crud);
       setCruds([...cruds, response.data.data]);
       showAlert("CRUD entry added successfully", "success");
     } catch (error) {
@@ -37,7 +37,7 @@ const ContextProvider = (props) => {
   // Update a CRUD entry
   const updateCrud = async (id, updatedCrud) => {
     try {
-      const response = await axios.put(`http://localhost:5000/api/put/${id}`, updatedCrud);
+      const response = await axios.put(`https://dlk-crud-backend.onrender.com/api/put/${id}`, updatedCrud);
       setCruds(cruds.map((crud) => (crud._id === id ? response.data.data : crud)));
       showAlert("CRUD entry updated successfully", "success");
     } catch (error) {
@@ -48,7 +48,7 @@ const ContextProvider = (props) => {
   // Delete a CRUD entry
   const deleteCrud = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/delete/${id}`);
+      await axios.delete(`https://dlk-crud-backend.onrender.com/api/delete/${id}`);
       setCruds(cruds.filter((crud) => crud._id !== id));
       showAlert("CRUD entry deleted successfully", "success");
     } catch (error) {
